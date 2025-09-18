@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Cadastro
+Cadastro
 {% endblock titulo %}
 
 {% block conteudo %}
@@ -9,42 +9,46 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <form action="/user", method="POST">
+            <form method="POST">
                 <div class="row mt-3">
                     <h2>Registre-se</h2>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-4 mx-auto">
-                        <label for="inputEmail4">Nome completo</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Nome completo" required>
+                        <label for="inputName">Nome completo</label>
+                        <input type="text" class="form-control" id="inputName" name="nome" placeholder="Nome completo"
+                            required>
                     </div>
                     <div class="form-group col-md-4 mx-auto">
-                        <label for="inputPassword4">E-mail</label>
-                        <input type="email" class="form-control" id="inputPassword4" placeholder="E-mail" required>
+                        <label for="inputEmail">E-mail</label>
+                        <input type="email" class="form-control" id="inputEmail" name="email" placeholder="E-mail"
+                            required>
                     </div>
                     <div class="form-group col-md-4 mx-auto">
                         <label for="inputTel">Telefone</label>
-                        <input type="number" class="form-control" id="inputTel" placeholder="Telefone">
+                        <input type="text" class="form-control" id="inputTel" name="telefone" placeholder="Telefone">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
-                        <label for="inputUser">Usuário</label>
-                        <input type="text" class="form-control" id="inputUser" placeholder="Usuário" required>
+                        <label for="inputUser">Usuário (Login)</label>
+                        <input type="text" class="form-control" id="inputUser" name="login" placeholder="Usuário"
+                            required>
                     </div>
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
                         <label for="inputPassword">Senha</label>
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Senha" required>
+                        <input type="password" class="form-control" id="inputPassword" name="senha" placeholder="Senha"
+                            required>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
                         <label for="inputGrupo">Grupo</label>
-                        <input type="text" class="form-control" id="inputGrupo" placeholder="Grupo">
+                        <input type="text" class="form-control" id="inputGrupo" name="grupo" placeholder="Grupo">
                     </div>
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
                         <label for="inputSetor">Setor</label>
-                        <select id="inputSetor" class="form-control">
+                        <select id="inputSetor" name="setor" class="form-control">
                             <option selected>Escolha...</option>
                             <option>Administrativo</option>
                             <option>Contábil</option>
@@ -56,17 +60,15 @@
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
-                        <label for="inputEmail4">Cargo</label>
-                        <input type="text" class="form-control" id="inputCargo" placeholder="Cargo">
+                        <label for="inputCargo">Cargo</label>
+                        <input type="text" class="form-control" id="inputCargo" name="cargo" placeholder="Cargo">
                     </div>
                     <div class="form-group mt-3 col-md-6 col-lg-6 mx-auto">
-                        <div class="row">
-                            <label for="inputState">Usuário ativo?</label>
-                        </div>
-                        <input type="checkbox" class="form-check-input" id="inputAtivo">
-                        <label class="form-check-label" for="inputAtivo">Ativo</label>
-                        <input type="checkbox" class="form-check-input" id="inputAtivo2">
-                        <label class="form-check-label" for="inputAtivo2">Inativo</label>
+                        <label for="inputState">Usuário ativo?</label>
+                        <select id="inputState" name="ativo" class="form-control">
+                            <option value="Ativo" selected>Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                        </select>
                     </div>
                 </div>
                 <div>
@@ -75,6 +77,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock conteudo %}

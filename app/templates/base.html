@@ -22,20 +22,20 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-opacity-0 p-3" id="navbar">
-  <a class="navbar-brand" href=" {{ url_for('welcome') }}">Lista de Tarefas</a>
+  <a class="navbar-brand" href=" {{ url_for('controller.home') }}">Lista de Tarefas</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav ms-auto">
       <li class="nav-item active">
-        <a class="nav-link" href=" {{ url_for('welcome') }}">Home</a>
+        <a class="nav-link" href=" {{ url_for('controller.home') }}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        <a class="nav-link" href="{{ url_for('controller.login') }}">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('register') }}">Registre-se</a>
+        <a class="nav-link" href="{{ url_for('controller.register') }}">Registre-se</a>
       </li>
     </ul>
   </div>

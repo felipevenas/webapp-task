@@ -1,15 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask
+from interface.controller import main_bp, user_bp
 
 app = Flask(__name__)
-
-@app.route('/')
-def welcome():
-    return render_template('home.html')
-
-@app.route('/register')
-def register():
-    return render_template('auth/register.html')
-
-@app.route('/login')
-def login():
-    return render_template('auth/login.html')
+app.register_blueprint(main_bp)
+app.register_blueprint(user_bp)
