@@ -6,6 +6,9 @@
         <div class="col-lg-6">
             <form action="">
                 <div class="row mt-3">
+                    <h2>Registre-se</h2>
+                </div>
+                <div class="row mt-3">
                     <div class="form-group col-md-4 mx-auto">
                         <label for="inputEmail4">Nome completo</label>
                         <input type="text" class="form-control" id="inputName" placeholder="Nome completo" required>
@@ -15,40 +18,55 @@
                         <input type="email" class="form-control" id="inputPassword4" placeholder="E-mail" required>
                     </div>
                     <div class="form-group col-md-4 mx-auto">
-                        <label for="inputPassword4">Telefone</label>
-                        <input type="number" class="form-control" id="inputPassword4" placeholder="Telefone">
+                        <label for="inputTel">Telefone</label>
+                        <input type="number" class="form-control" id="inputTel" placeholder="Telefone">
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
-                        <label for="inputEmail4">Usuário</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="Usuário" required>
+                        <label for="inputUser">Usuário</label>
+                        <input type="text" class="form-control" id="inputUser" placeholder="Usuário" required>
                     </div>
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
-                        <label for="inputPassword4">Senha</label>
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Senha" required>
+                        <label for="inputPassword">Senha</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Senha" required>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
-                        <label for="inputState">Tipo de conta</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Escolha...</option>
-                            <option>...</option>
-                        </select>
+                        <label for="inputGrupo">Grupo</label>
+                        <input type="text" class="form-control" id="inputGrupo" placeholder="Grupo">
                     </div>
                     <div class="form-group col-md-6 col-lg-6 mx-auto">
-                        <label for="inputState">Tipo de conta</label>
-                        <select id="inputState" class="form-control">
+                        <label for="inputSetor">Setor</label>
+                        <select id="inputSetor" class="form-control">
                             <option selected>Escolha...</option>
-                            <option>...</option>
+                            <option>Administrativo</option>
+                            <option>Contábil</option>
+                            <option>Financeiro</option>
+                            <option>TI</option>
+                            <option>Relacionamento</option>
                         </select>
                     </div>
-
-                    <div>
-                        <button type="submit" class="btn btn-primary mt-4">Concluir</button>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col-md-6 col-lg-6 mx-auto">
+                        <label for="inputEmail4">Cargo</label>
+                        <input type="text" class="form-control" id="inputCargo" placeholder="Cargo">
                     </div>
-                    
+                    <div class="form-group mt-3 col-md-6 col-lg-6 mx-auto">
+                        <div class="row">
+                            <label for="inputState">Usuário ativo?</label>
+                        </div>
+                        <input type="checkbox" class="form-check-input" id="checkbox1">
+                        <label class="form-check-label" for="checkbox1">Ativo</label>
+                        <input type="checkbox" class="form-check-input" id="checkbox2">
+                        <label class="form-check-label" for="checkbox2">Inativo</label>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary mt-4">Concluir</button>
+                </div>
             </form>
         </div>
     </div>
