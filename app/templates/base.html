@@ -6,11 +6,22 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>
+      {% block titulo %}
+        Início
+      {% endblock titulo %}
+    </title>
+
+    <style>
+      body {
+        background-color: #FDFAF6;
+      }
+      
+    </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-opacity-0 p-3" id="navbar">
   <a class="navbar-brand" href=" {{ url_for('welcome') }}">Lista de Tarefas</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
