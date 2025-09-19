@@ -1,6 +1,4 @@
 from flask import render_template, request, redirect, url_for, flash, Blueprint
-from app.main import app
-from app.domain.user.repository_imp import UserService
 from app.infra.api_client import APIClient
 
 user_bp = Blueprint("user_bp", __name__)
