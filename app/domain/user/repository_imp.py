@@ -1,6 +1,6 @@
 from infra.api_client import APIClient
 
-class UserRepository():
+class UserIRepository():
 
     def find_all():
         return APIClient.get("/users")
