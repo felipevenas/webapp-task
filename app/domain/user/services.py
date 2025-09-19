@@ -23,3 +23,7 @@ class UserService():
     @staticmethod
     def delete(user_id: int) -> bool:
         return UserRepositoryImp.delete(user_id)
+    
+    @staticmethod
+    def login(credentials: dict) -> dict | None:
+        return UserRepositoryImp.login(credentials)

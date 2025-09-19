@@ -4,6 +4,7 @@ from flask import request
 # Factory para criação de usuários:
 @dataclass
 class User():
+        id: int
         nome: str
         email: str
         login: str
@@ -15,28 +16,19 @@ class User():
         ativo: str
 
         # Cria um objeto User a partir de um dicionário vindo da API:
-        def from_dict(obj, data: dict) -> 'User':
+        @classmethod
+        def from_dict(cls, data: dict) -> 'User':
 
                 # Lógica de tradução do dicionário que vem da API:
-                return obj(
+                return cls(
                         id = data.get('id'),
                         nome = data.get('nome'),
                         login = data.get('login'),
+                        senha = data.get('senha'),
                         telefone = data.get('telefone'),
                         email = data.get('email'),
                         cargo = data.get('cargo'),
+                        grupo = data.get('grupo'),
+                        setor = data.get('setor'),
                         ativo = data.get('ativo')
                         )
-        
-        def from_form(data: dict):
-                return data == {
-                        'nome': request.form.get('nome'),
-                        'email': request.form.get('email'),
-                        'telefone': request.form.get('telefone'),
-                        'login': request.form.get('login'),
-                        'senha': request.form.get('senha'),
-                        'grupo': request.form.get('grupo'),
-                        'setor': request.form.get('setor'),
-                        'cargo': request.form.get('cargo'),
-                        'ativo': request.form.get('ativo')
-                        }

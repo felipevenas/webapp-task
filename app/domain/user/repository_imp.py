@@ -13,7 +13,7 @@ class UserRepositoryImp(IUserRepository):
 
     @staticmethod   
     def find_by_id(user_id: int) -> User | None:
-        user_data = APIClient.get(f"user/{user_id}")
+        user_data = APIClient.get(f"/user/{user_id}")
         if user_data:
             return User.from_dict(user_data)
         return None
@@ -35,6 +35,5 @@ class UserRepositoryImp(IUserRepository):
 
     @staticmethod
     def delete(user_id: int) -> bool:
-        user_data = APIClient.delete(f"/user/{user_id}")
-        response = User.from_dict(user_data), True
+        response = APIClient.delete(f"/user/{user_id}")
         return response is not None

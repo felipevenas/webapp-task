@@ -12,8 +12,9 @@ class APIClient:
     def _request(method, endpoint, data=None, params=None):
         url = f"{API_URL}/{endpoint}"
         try:
-            response = requests.request(method, url, json=data, params=params)
+            response = requests.request(method, url, json=data, params=params, timeout=5)
             response.raise_for_status()
+            
             if response.status_code == 204:
                 return None
             return response.json()
