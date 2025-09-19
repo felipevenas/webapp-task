@@ -5,14 +5,10 @@ Cadastro
 {% endblock titulo %}
 
 {% block conteudo %}
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <form method="POST">
-                <div class="row mt-3">
-                    <h2>Registre-se</h2>
-                </div>
                 <div class="row mt-3">
                     <h2>Registre-se</h2>
                 </div>
@@ -66,7 +62,7 @@ Cadastro
                         <label for="inputCargo">Cargo</label>
                         <input type="text" class="form-control" id="inputCargo" name="cargo" placeholder="Cargo">
                     </div>
-                    <div class="form-group mt-3 col-md-6 col-lg-6 mx-auto">
+                    <div class="form-group col-md-6 col-lg-6 mx-auto">
                         <label for="inputState">Usuário ativo?</label>
                         <select id="inputState" name="ativo" class="form-control">
                             <option value="Ativo" selected>Ativo</option>
@@ -82,5 +78,4 @@ Cadastro
     </div>
 </div>
 </div>
-
 {% endblock conteudo %}

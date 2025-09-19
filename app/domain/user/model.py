@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from flask import request
 
 # Factory para criação de usuários:
 @dataclass
@@ -20,6 +21,22 @@ class User():
                 return obj(
                         id = data.get('id'),
                         nome = data.get('nome'),
+                        login = data.get('login'),
+                        telefone = data.get('telefone'),
                         email = data.get('email'),
+                        cargo = data.get('cargo'),
                         ativo = data.get('ativo')
                         )
+        
+        def from_form(data: dict):
+                return data == {
+                        'nome': request.form.get('nome'),
+                        'email': request.form.get('email'),
+                        'telefone': request.form.get('telefone'),
+                        'login': request.form.get('login'),
+                        'senha': request.form.get('senha'),
+                        'grupo': request.form.get('grupo'),
+                        'setor': request.form.get('setor'),
+                        'cargo': request.form.get('cargo'),
+                        'ativo': request.form.get('ativo')
+                        }

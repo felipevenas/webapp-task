@@ -1,18 +1,25 @@
 from app.infra.api_client import APIClient
 from app.domain.user.model import User
-from app.domain.user.repository_imp import UserIRepository as repository
+from app.domain.user.repository_imp import UserRepositoryImp
 
 class UserService():
     
     @staticmethod
     def find_all() -> User:
-        data = repository.find_all
+        return UserRepositoryImp.find_all()
 
     @staticmethod
-    def get_by_id(user_id: int) -> User | None:
-        data = APIClient.get(f"/user/{user_id}")
+    def find_by_id(user_id: int) -> User | None:
+        return UserRepositoryImp.find_by_id(user_id)
+    
+    @staticmethod
+    def create(data: dict) -> User:
+        return UserRepositoryImp.create(data)
+    
+    @staticmethod
+    def update(user_id: int, data: dict) -> User | None:
+        return UserRepositoryImp.update(user_id, data)
 
-        if data:
-            return User.from_dict(data)
-        
-        return None
+    @staticmethod
+    def delete(user_id: int) -> bool:
+        return UserRepositoryImp.delete(user_id)
