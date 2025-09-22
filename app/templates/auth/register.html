@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 
+<<<<<<< Updated upstream
 {% block titulo %}
 Cadastro
 {% endblock titulo %}
 
 {% block conteudo %}
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -77,5 +81,68 @@ Cadastro
         </div>
     </div>
 </div>
+<<<<<<< Updated upstream
 </div>
+=======
+
+=======
+<body class="text-center">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form method="POST" class="form-register">
+                    <h1 class="h3 mb-3">Crie sua conta!</h1>
+
+                    {{ form.hidden_tag() }}
+
+                    <div class="row mt-3">
+                        <div class="form-group col-md-4">
+                            {{ form.nome(class="form-control", placeholder="Nome:") }}</div>
+                        <div class="form-group col-md-4">
+                            {{ form.email(class="form-control", placeholder="Email:") }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.tel(class="form-control", placeholder="Telefone:") }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-group col-md-6">
+                            {{ form.usuario(class="form-control", placeholder="Usuário:") }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.senha(class="form-control", placeholder="Senha:") }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-group col-md-6">
+                            {{ form.grupo(class="form-control", placeholder="Grupo:") }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.setor(class="form-control", placeholder="Setor:") }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-group col-md-6">
+                            {{ form.cargo(class="form-control", placeholder="Cargo:") }}
+                        </div>
+                        <div class="form-group col-md-6">
+                            {{ form.ativo(class="form-control", placeholder="Ativo:") }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="form-group">
+                            {{ form.submit(class="form-control btn btn-primary") }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 {% endblock conteudo %}

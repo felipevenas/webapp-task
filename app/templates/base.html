@@ -33,15 +33,41 @@
               <a class="nav-link" href=" {{ url_for('main_bp.home') }}">Home</a>
             </li>
             <li class="nav-item">
+<<<<<<< Updated upstream
               <a class="nav-link" href="{{ url_for('user_bp.login') }}">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('user_bp.register') }}">Registre-se</a>
+=======
+<<<<<<< Updated upstream
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('register') }}">Registre-se</a>
+=======
+              <a class="nav-link" href="{{ url_for('user_bp.login_page') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('user_bp.register_page') }}">Registre-se</a>
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
             </li>
           </ul>
         </div>
       </nav>
     </div>
+
+    {% with messeges = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert", aria-label="Close">
+              {{message}}
+            </button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
     <div class="row">
       {% block conteudo %}
