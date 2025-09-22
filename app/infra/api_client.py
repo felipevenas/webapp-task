@@ -10,7 +10,7 @@ class APIClient:
 
     @staticmethod
     def _request(method, endpoint, data=None, params=None):
-        url = f"{API_URL}/{endpoint}"
+        url = f"{API_URL}{endpoint}"
         try:
             response = requests.request(method, url, json=data, params=params, timeout=5)
             response.raise_for_status()
@@ -22,8 +22,8 @@ class APIClient:
             print(f"Erro de comunicação com a API em {method} {url}: {e}")        
 
     @staticmethod
-    def get(endpoint, params=None):
-        return APIClient._request('GET', endpoint, params=params)
+    def get(endpoint, data=None):
+        return APIClient._request('GET', endpoint, data=data)
     
     @staticmethod
     def post(endpoint, data=None):

@@ -11,19 +11,7 @@ class UserRepositoryImp(IUserRepository):
             return [User.from_dict(users_data) for user_data in users_data]
         return []
 
-    @staticmethod   
-    def find_by_id(user_id: int) -> User | None:
-        user_data = APIClient.get(f"/user/{user_id}")
-        if user_data:
-            return User.from_dict(user_data)
-        return None
     
-    @staticmethod
-    def create(user_data: dict) -> User:
-        user_data = APIClient.post("/user", data=user_data)
-        if user_data:
-            return User.from_dict(user_data)
-        return None 
 
     @staticmethod
     def update(user_id: int, user_data: dict) -> User:
@@ -37,8 +25,29 @@ class UserRepositoryImp(IUserRepository):
         response = APIClient.delete(f"/user/{user_id}")
         return response is not None
     
+    @staticmethod   
+    def find_by_id(user_id: int) -> User | None:
+        user_data = APIClient.get(f"/user/{user_id}")
+        if user_data:
+            return User.from_dict(user_data)
+        return None
+    
     @staticmethod
-    def login(credentials: dict) -> dict:
-        credentials = APIClient.post(f"/login", data=credentials)
-        return credentials
+    def create(user_data: dict) -> User:
+        user_data = APIClient.post("/user", data=user_data)
+        if user_data:
+            return User.from_dict(user_data)
+        return None 
+    
+    @staticmethod
+    def login(credentials: dict) -> dict | None:
+
+        login_data = {
+            'usuario': credentials.get('login'),
+            'senha': credentials.get('senha')
+        }
+
+        response = APIClient.get(f"/user/login", data=login_data)
+        return response
+ 
             

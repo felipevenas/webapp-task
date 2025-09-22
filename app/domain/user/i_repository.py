@@ -16,5 +16,5 @@ class IUserRepository(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def login(data: dict) -> User:
+    def login(data: dict) -> dict:
         raise NotImplementedError

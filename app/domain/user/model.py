@@ -46,3 +46,11 @@ class User():
                         "ativo": form.ativo.data
                 }
                 return user_data
+        
+        @classmethod
+        def login_to_dict(cls, form) -> dict:
+                user_data = {
+                        "login": form.usuario.data,
+                        "senha": form.senha.data
+                }
+                return user_data
