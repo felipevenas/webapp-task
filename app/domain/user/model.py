@@ -18,19 +18,11 @@ class User():
         # Cria um objeto User a partir de um dicionário vindo da API:
         @classmethod
         def from_dict(cls, data: dict) -> 'User':
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                 # Lógica de tradução do dicionário que vem da API:
                 return cls(
                         id = data.get('id'),
                         nome = data.get('nome'),
-<<<<<<< Updated upstream
-                        login = data.get('login'),
-=======
                         login = data.get('usuario'),
->>>>>>> Stashed changes
                         senha = data.get('senha'),
                         telefone = data.get('telefone'),
                         email = data.get('email'),
@@ -39,8 +31,6 @@ class User():
                         setor = data.get('setor'),
                         ativo = data.get('ativo')
                         )
-<<<<<<< Updated upstream
-=======
         
         @classmethod
         def to_dict(cls, form) -> dict:
@@ -56,4 +46,3 @@ class User():
                         "ativo": form.ativo.data
                 }
                 return user_data
->>>>>>> Stashed changes
