@@ -28,7 +28,6 @@ class UserRepositoryImp(IUserRepository):
     @staticmethod
     def update(user_id: int, user_data: dict) -> User:
         updated_data = APIClient.put(f"/user/{user_id}", data=user_data)
-
         if updated_data:
             return User.from_dict(updated_data)
         return None
@@ -37,3 +36,9 @@ class UserRepositoryImp(IUserRepository):
     def delete(user_id: int) -> bool:
         response = APIClient.delete(f"/user/{user_id}")
         return response is not None
+    
+    @staticmethod
+    def login(credentials: dict) -> dict:
+        credentials = APIClient.post(f"/login", data=credentials)
+        return credentials
+            

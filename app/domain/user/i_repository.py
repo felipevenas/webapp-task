@@ -14,3 +14,7 @@ class IUserRepository(ABC):
     @abstractmethod
     def create(data: dict) -> User:
         raise NotImplementedError
+    
+    @abstractmethod
+    def login(data: dict) -> User:
+        raise NotImplementedError
