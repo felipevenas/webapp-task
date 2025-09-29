@@ -30,6 +30,7 @@ def login():
         flash(f"Bem-vindo de volta {form.usuario.data}!", 'success')
         session['login'] = form.usuario.data
         return redirect(url_for("index_bp.tasks_page"))
+
     else:
         flash("Utilizador ou senha inválidos.", 'danger')
         return redirect(url_for('index_bp.login_page'))
