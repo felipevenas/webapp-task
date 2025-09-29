@@ -18,3 +18,8 @@ class LoginForm(FlaskForm):
     usuario = StringField(label='Usuário:', validators=[Length(min=6, max=20), DataRequired()])
     senha = PasswordField(label='Senha:', validators=[Length(min=6, max=20), DataRequired()])
     submit = SubmitField(label='Entrar')
+
+class CreateTaskForm(FlaskForm):
+    titulo = StringField(label='Título', validators=[Length(max=80), DataRequired()])
+    descricao = StringField(label='Descrição', validators=[Length(max=100)])
+    submit = SubmitField(label='Adicionar tarefa')
