@@ -1,7 +1,6 @@
 from flask import Blueprint, flash, redirect, url_for, render_template, request, session
 
 from app.forms.forms import CadastroForm, LoginForm 
-from app.domain.user.services import UserService
 from app.domain.auth.services import AuthService
 
 auth_bp = Blueprint('auth_bp', __name__)
@@ -30,7 +29,7 @@ def login():
     if authenticated_user:
         flash(f"Bem-vindo de volta {form.usuario.data}!", 'success')
         session['login'] = form.usuario.data
-        return redirect(url_for("user_bp.tasks_page"))
+        return redirect(url_for("index_bp.tasks_page"))
     else:
         flash("Utilizador ou senha inválidos.", 'danger')
         return redirect(url_for('index_bp.login_page'))

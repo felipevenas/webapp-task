@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from app.forms.forms import LoginForm, CadastroForm
+from app.forms.forms import LoginForm, CadastroForm, CreateTaskForm
 
 index_bp = Blueprint('index_bp', __name__)
 
@@ -22,3 +22,13 @@ def register_page():
 @index_bp.route('/how-to-use')
 def how_to_use_page():
     return render_template('how_to_use.html')
+
+@index_bp.route('/tasks')
+def tasks_page():
+    return render_template('task/tasks.html')
+
+@index_bp.route('/task')
+def create_task_page():
+    form = CreateTaskForm()
+    return render_template('task/create_task.html',
+                           form=form)
