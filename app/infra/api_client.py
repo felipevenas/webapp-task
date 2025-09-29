@@ -50,6 +50,20 @@ class APIClient:
             return None
         
     @staticmethod
+    def create_task(data):
+        endpoint = '/task'
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.post(url, json=data, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API: {e}')
+            return None
+        
+    @staticmethod
     def login(data):
         endpoint = '/auth'
         url = f'{API_URL}{endpoint}'
