@@ -1,4 +1,3 @@
-from app.infra.api_client import APIClient
 from app.domain.user.model import User
 from app.domain.user.repository_imp import UserRepositoryImp
 
