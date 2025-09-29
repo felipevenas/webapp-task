@@ -14,10 +14,8 @@ class User():
         setor: str
         ativo: str
 
-        # Cria um objeto User a partir de um dicionário vindo da API:
         @classmethod
         def from_dict(cls, data: dict) -> 'User':
-                # Lógica de tradução do dicionário que vem da API:
                 return cls(
                         id = data.get('id'),
                         nome = data.get('nome'),
@@ -33,7 +31,7 @@ class User():
         
         @classmethod
         def to_dict(cls, form):
-                payload = {
+                json = {
                         "nome": form.nome.data,
                         "login": form.usuario.data,
                         "senha": form.senha.data,
@@ -44,7 +42,7 @@ class User():
                         "cargo": form.cargo.data,
                         "ativo": form.ativo.data
                 }
-                return payload
+                return json
         
         @classmethod
         def login_to_dict(cls, form) -> dict:

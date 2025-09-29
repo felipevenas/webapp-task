@@ -6,7 +6,7 @@ class UserRepositoryImp(IUserRepository):
 
     @staticmethod
     def find_all() -> list[User]:
-        users_data = APIClient.get("/users")
+        users_data = APIClient.get_users("/users")
         if users_data:
             return [User.from_dict(users_data) for user_data in users_data]
         return []
