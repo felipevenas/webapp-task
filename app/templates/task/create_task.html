@@ -1,0 +1,35 @@
+{% extends 'auth/template_auth.html' %}
+
+{% block conteudo %}
+
+<body class="text-center">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form method="POST" action="{{ url_for('task_bp.create_task') }}" class="form-task">
+                    <h1 class="h3 mb-3">Adicione uma tarefa a sua lista!</h1>
+
+                    <div class="row mt-3">
+                        <div class="form-group">
+                            {{ form.titulo(class="form-control", placeholder="Título:") }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="form-group">
+                            {{ form.descricao(class="form-control", placeholder="Descrição:") }}
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="form-group">
+                            {{ form.submit(class="form-control btn btn-primary") }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+{% endblock conteudo %}

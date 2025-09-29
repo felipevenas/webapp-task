@@ -30,7 +30,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('user_bp.tasks_page') }}">Tarefas</a>
+              <a class="nav-link" href="{{ url_for('index_bp.create_task_page') }}">Adicionar tarefa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('index_bp.tasks_page') }}">Tarefas</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href=" {{ url_for('index_bp.how_to_use_page') }}">Como usar</a>
