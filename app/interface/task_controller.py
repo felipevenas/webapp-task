@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, request, flash
+from flask import Blueprint, redirect, url_for, request, flash, session
 
 from app.forms.forms import CreateTaskForm
 from app.domain.task.services import TaskService
@@ -11,6 +11,11 @@ def create_task():
     form = CreateTaskForm(request.form)
 
     if form.validate_on_submit():
+
+        if session ['login'] == None or 'login' not in session:
+            return redirect(url_for('index_bp.login_page'))
+
+        user_id = session.get('id') # Validar se isso está correto!
         response = TaskService.create_task(form)
 
         if response and response.status_code == 200:
