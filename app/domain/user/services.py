@@ -13,17 +13,9 @@ class UserService():
         return UserRepositoryImp.find_by_id(user_id)
     
     @staticmethod
-    def create(data: dict) -> User:
-        return UserRepositoryImp.create(data)
-    
-    @staticmethod
     def update(user_id: int, data: dict) -> User | None:
         return UserRepositoryImp.update(user_id, data)
 
     @staticmethod
     def delete(user_id: int) -> bool:
         return UserRepositoryImp.delete(user_id)
-    
-    @staticmethod
-    def login(credentials: dict) -> dict | None:
-        return UserRepositoryImp.login(credentials)

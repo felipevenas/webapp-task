@@ -11,8 +11,6 @@ class UserRepositoryImp(IUserRepository):
             return [User.from_dict(users_data) for user_data in users_data]
         return []
 
-    
-
     @staticmethod
     def update(user_id: int, user_data: dict) -> User:
         updated_data = APIClient.put(f"/user/{user_id}", data=user_data)
@@ -41,13 +39,9 @@ class UserRepositoryImp(IUserRepository):
     
     @staticmethod
     def login(credentials: dict) -> dict | None:
-
-        login_data = {
-            'usuario': credentials.get('login'),
-            'senha': credentials.get('senha')
-        }
-
-        response = APIClient.get(f"/user/login", data=login_data)
-        return response
+        credentials = APIClient.login(f"/user/login", data=credentials)
+        if credentials:
+            return User.login_to_dict(credentials)
+        return None
  
             

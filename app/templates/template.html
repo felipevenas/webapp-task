@@ -26,36 +26,35 @@
   <div class="container-fluid">
     <div class="row">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
-        <a class="navbar-brand" href=" {{ url_for('main_bp.home') }}">Lista de Tarefas</a>
+        <a class="navbar-brand" href=" {{ url_for('index_bp.index_page') }}">Lista de Tarefas</a>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item active">
-              <a class="nav-link" href=" {{ url_for('main_bp.home') }}">Home</a>
+              <a class="nav-link" href=" {{ url_for('index_bp.index_page') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('main_bp.login') }}">Login</a>
+              <a class="nav-link" href="{{ url_for('index_bp.login_page') }}">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('main_bp.register') }}">Registre-se</a>
+              <a class="nav-link" href="{{ url_for('index_bp.register_page') }}">Registre-se</a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
 
-    {% with messeges = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-            <button type="button" class="btn-close" data-bs-dismiss="alert", aria-label="Close">
-              {{message}}
-            </button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+    <div class="container">
 
-    <div class="row">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class=list-unstyled id="messages">
+                {% for category, message in messages %}
+                    <li class="alert alert-primary mt-4">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+
       {% block conteudo %}
       {% endblock conteudo %}
     </div>

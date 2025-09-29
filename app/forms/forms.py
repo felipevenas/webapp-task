@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
-from wtforms.validators import Length, Email, DataRequired, ValidationError
-from app.domain.user.model import User
+from wtforms.validators import Length, Email, DataRequired
 
 class CadastroForm(FlaskForm):
     nome = StringField(label='Nome:')

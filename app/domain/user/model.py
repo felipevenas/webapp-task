@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from flask import request
 
 # Factory para criação de usuários:
 @dataclass
@@ -33,8 +32,8 @@ class User():
                         )
         
         @classmethod
-        def to_dict(cls, form) -> dict:
-                user_data = {
+        def to_dict(cls, form):
+                payload = {
                         "nome": form.nome.data,
                         "login": form.usuario.data,
                         "senha": form.senha.data,
@@ -45,7 +44,7 @@ class User():
                         "cargo": form.cargo.data,
                         "ativo": form.ativo.data
                 }
-                return user_data
+                return payload
         
         @classmethod
         def login_to_dict(cls, form) -> dict:
