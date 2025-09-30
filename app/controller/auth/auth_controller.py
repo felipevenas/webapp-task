@@ -24,15 +24,22 @@ def register():
 def login(): 
 
     form = LoginForm(request.form)
-    authenticated_user = AuthService.login(form)
 
-    if authenticated_user:
+    api_response = AuthService.login(form)
+
+    if api_response:
+
+        user_data = api_response.json()
+        
         flash(f"Bem-vindo de volta {form.usuario.data}!", 'success')
-        session['login'] = form.usuario.data
+
+        session['login'] = user_data.get('login')
+        session['user_id'] = user_data.get('id')
+
         return redirect(url_for("index_bp.tasks_page"))
 
     else:
-        flash("Utilizador ou senha inválidos.", 'danger')
+        flash("Utilizador ou senha inválidos.")
         return redirect(url_for('index_bp.login_page'))
     
 @auth_bp.route('/logout')
