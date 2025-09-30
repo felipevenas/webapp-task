@@ -1,8 +1,8 @@
 from flask import Flask
-from app.interface.controller import index_bp
-from app.interface.user_controller import user_bp
-from app.interface.auth.auth_controller import auth_bp
-from app.interface.task_controller import task_bp
+from app.controller.controller import index_bp
+from app.controller.user_controller import user_bp
+from app.controller.auth.auth_controller import auth_bp
+from app.controller.task_controller import task_bp
 from dotenv import load_dotenv
 import os
 

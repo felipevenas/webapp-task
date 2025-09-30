@@ -10,6 +10,13 @@ class UserRepositoryImp(IUserRepository):
         if users_data:
             return [User.from_dict(users_data) for user_data in users_data]
         return []
+    
+    @staticmethod
+    def find_by_login(user_login: str) -> User:
+        user_data = APIClient.find_by_login(f'user/{user_login}')
+        if user_data:
+            return User.from_dict(user_data)
+        return None
 
     @staticmethod
     def update(user_id: int, user_data: dict) -> User:
