@@ -14,4 +14,3 @@ class ITaskRepository(ABC):
     @abstractmethod
     def create(data: dict) -> Task:
         raise NotImplementedError
-    
