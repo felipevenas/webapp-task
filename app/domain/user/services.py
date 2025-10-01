@@ -18,3 +18,4 @@ class UserService():
     @staticmethod
     def delete(user_id: int) -> bool:
         return UserRepositoryImp.delete(user_id)
+    

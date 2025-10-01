@@ -36,6 +36,19 @@ class APIClient:
             return None
         
     @staticmethod
+    def delete_task(task_id):
+        endpoint = f'/task/{task_id}'
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+        try:
+            response = requests.delete(url=url, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API: {e}')
+            return None
+        
+    @staticmethod
     def register(data):
         endpoint = '/register'
         url = f'{API_URL}{endpoint}'
@@ -64,6 +77,20 @@ class APIClient:
             return None
         
     @staticmethod
+    def find_by_user(user_id):
+        endpoint = f'/tasks/user/{user_id}'
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.get(url=url, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API {e}')
+            return None
+
+    @staticmethod
     def login(data):
         endpoint = '/auth'
         url = f'{API_URL}{endpoint}'
@@ -76,3 +103,4 @@ class APIClient:
         except requests.exceptions.HTTPError as e:
             print(f'Erro ao conectar a API: {e}')
             return None
+        
