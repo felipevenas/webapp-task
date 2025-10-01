@@ -8,9 +8,10 @@ class ITaskRepository(ABC):
         raise NotImplementedError
     
     @abstractmethod
-    def get_by_id(task_id: int) -> Task:
+    def find_by_id(task_id: int) -> Task:
         raise NotImplementedError
     
     @abstractmethod
     def create(data: dict) -> Task:
         raise NotImplementedError
+    

@@ -37,7 +37,7 @@ class APIClient:
         
     @staticmethod
     def delete_task(task_id):
-        endpoint = f'/task/{task_id}'
+        endpoint = f'/delete/{task_id}'
         url = f'{API_URL}{endpoint}'
         headers = {'Content-Type': 'application/json'}
         try:
@@ -69,13 +69,59 @@ class APIClient:
         headers = {'Content-Type': 'application/json'}
 
         try:
-            response = requests.post(url, json=data, headers=headers, timeout=10)
+            response = requests.post(url=url, json=data, headers=headers, timeout=10)
             response.raise_for_status()
             return response
         except requests.exceptions.HTTPError as e:
             print(f'Erro ao conectar a API: {e}')
             return None
-        
+    
+    @staticmethod
+    def find_by_id(task_id):
+        endpoint = f'/task/{task_id}'
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.get(url=url, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API: {e}')
+            return None
+
+    @staticmethod
+    def update_task(task_id, data):
+        endpoint = f'/update/{task_id}'
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.put(url=url, json=data, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API: {e}')
+            return None
+
+    @staticmethod
+    def done_task(task_id, status):
+        endpoint = f'/done/{task_id}'
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+        data = {'status': status}
+
+        try:
+            response = requests.put(url=url, json=data, headers=headers, timeout=10)
+            response.raise_for_status() 
+            return response
+            
+        except requests.exceptions.RequestException as e:
+            print("\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print(f"!!! ERRO CRÍTICO NA CHAMADA DA API: {e} !!!")
+            if e.response:
+                return None
+
     @staticmethod
     def find_by_user(user_id):
         endpoint = f'/tasks/user/{user_id}'
@@ -87,7 +133,7 @@ class APIClient:
             response.raise_for_status()
             return response
         except requests.exceptions.HTTPError as e:
-            print(f'Erro ao conectar a API {e}')
+            print(f'Erro ao conectar a API: {e}')
             return None
 
     @staticmethod

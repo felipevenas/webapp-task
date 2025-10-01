@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, SubmitField
+from wtforms import StringField, PasswordField, EmailField, SubmitField, SelectField
 from wtforms.validators import Length, Email, DataRequired
 
 class CadastroForm(FlaskForm):
@@ -23,3 +23,10 @@ class CreateTaskForm(FlaskForm):
     titulo = StringField(label='Título:', validators=[Length(max=100), DataRequired()])
     descricao = StringField(label='Descrição:', validators=[Length(max=100), DataRequired()])
     submit = SubmitField(label='Adicionar tarefa')
+    status = SelectField('Status:',
+                    validators=[DataRequired(message="Por favor, escolha um gstatus.")],
+                    choices=[
+                        ('Pendente', 'Pendente'),
+                        ('Finalizada', 'Finalizada')
+                        ]
+                    )

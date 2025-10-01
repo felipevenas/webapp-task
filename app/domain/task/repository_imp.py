@@ -25,6 +25,25 @@ class TaskRepositoryImp(ITaskRepository):
         return []
     
     @staticmethod
+    def find_by_id(user_id: int) -> Task:
+        api_response = APIClient.find_by_id(user_id)
+
+        if api_response:
+            task_data = api_response.json()
+            return task_data
+        return None
+    
+    @staticmethod
+    def update_task(task_id: int, data):
+        response = APIClient.update_task(task_id, data)
+        return response is not None and response.status_code == 200
+            
+    @staticmethod
+    def done_task(task_id: int, status: str):
+        response = APIClient.done_task(task_id, status)
+        return response is not None and response.status_code == 200
+
+    @staticmethod
     def delete_task(id: int) -> Task:
         api_response = APIClient.delete_task(id)
         

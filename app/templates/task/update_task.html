@@ -6,11 +6,13 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <form method="POST" action="{{ url_for('task_bp.create_task') }}" class="form-task">
+                <form method="POST" action="{{ url_for('task_bp.update_task') }}" class="form-task">
 
                     {{ form.hidden_tag() }}
 
-                    <h1 class="h3 mb-3">Adicione uma tarefa a sua lista!</h1>
+                    <input type="hidden" name="inputId" value="{{id}}">
+
+                    <h1 class="h3 mb-3">Edite sua tarefa!</h1>
 
                     <div class="row mt-3">
                         <div class="form-group">
