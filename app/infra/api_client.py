@@ -9,13 +9,26 @@ API_URL = os.getenv('API_URL')
 class APIClient:
 
     @staticmethod
-    def get_users(params=None):
+    def create(endpoint, data):
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.post(url=url, json=data, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        except requests.exceptions.HTTPError as e:
+            print(f"Erro ao conectar a API: {e}")
+            return None
+    
+    @staticmethod
+    def get_all():
         endpoint = '/users'
         url = f'{API_URL}{endpoint}'
         headers = {'Content-Type': 'application/json'}
-        
+
         try:
-            response = requests.get(url, params=params, headers=headers, timeout=1)
+            response = requests.get(url=url, headers=headers, timeout=1)
             response.raise_for_status()
             return response.json()
         
@@ -23,62 +36,7 @@ class APIClient:
             return f'Erro ao conectar a API: {e}'
         
     @staticmethod
-    def get_user_by_id(user_id):
-        endpoint = f'/user/{user_id}'
-        url = f'{API_URL}{endpoint}'
-        headers = {'Content-Type': 'application/json'}
-        try:
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()
-            return response.json()
-        except requests.exceptions.HTTPError as e:
-            print(f"Erro ao conectar a API: {e}")
-            return None
-        
-    @staticmethod
-    def delete_task(task_id):
-        endpoint = f'/task/{task_id}'
-        url = f'{API_URL}{endpoint}'
-        headers = {'Content-Type': 'application/json'}
-        try:
-            response = requests.delete(url=url, headers=headers, timeout=10)
-            response.raise_for_status()
-            return response
-        except requests.exceptions.HTTPError as e:
-            print(f'Erro ao conectar a API: {e}')
-            return None
-        
-    @staticmethod
-    def register(data):
-        endpoint = '/register'
-        url = f'{API_URL}{endpoint}'
-        headers = {'Content-Type': 'application/json'}
-
-        try:
-            response = requests.post(url, json=data, headers=headers, timeout=10)
-            response.raise_for_status()
-            return response
-        except requests.exceptions.HTTPError as e:
-            print(f"Erro ao conectar a API: {e}")
-            return None
-        
-    @staticmethod
-    def create_task(data):
-        endpoint = '/task'
-        url = f'{API_URL}{endpoint}'
-        headers = {'Content-Type': 'application/json'}
-
-        try:
-            response = requests.post(url, json=data, headers=headers, timeout=10)
-            response.raise_for_status()
-            return response
-        except requests.exceptions.HTTPError as e:
-            print(f'Erro ao conectar a API: {e}')
-            return None
-        
-    @staticmethod
-    def find_by_user(user_id):
-        endpoint = f'/tasks/user/{user_id}'
+    def get_by_id(endpoint):
         url = f'{API_URL}{endpoint}'
         headers = {'Content-Type': 'application/json'}
 
@@ -86,8 +44,37 @@ class APIClient:
             response = requests.get(url=url, headers=headers, timeout=10)
             response.raise_for_status()
             return response
+        
         except requests.exceptions.HTTPError as e:
-            print(f'Erro ao conectar a API {e}')
+            print(f"Erro ao conectar a API: {e}")
+            return None
+        
+    @staticmethod
+    def delete(endpoint):
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.delete(url=url, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API: {e}')
+            return None
+
+    @staticmethod
+    def update(endpoint, data):
+        url = f'{API_URL}{endpoint}'
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.put(url=url, json=data, headers=headers, timeout=10)
+            response.raise_for_status()
+            return response
+        
+        except requests.exceptions.HTTPError as e:
+            print(f'Erro ao conectar a API: {e}')
             return None
 
     @staticmethod

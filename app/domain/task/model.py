@@ -5,6 +5,7 @@ class Task():
         id: int
         titulo: str
         descricao: str
+        status: str
         user_id: int
 
         @classmethod
@@ -13,5 +14,6 @@ class Task():
                         id = data.get('id'),
                         titulo = data.get('titulo'),
                         descricao = data.get('descricao'),
+                        status = data.get('status'),
                         user_id = data.get('user_id')
                         )

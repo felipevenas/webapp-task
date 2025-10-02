@@ -8,15 +8,38 @@ class TaskService():
         data = {
             'titulo': form.titulo.data,
             'descricao': form.descricao.data,
+            'status': form.status.data,
             'user_id': int(user_id)
         }
 
         return TaskRepositoryImp.create_task(data)
     
     @staticmethod
-    def find_by_user(user_id: int):
-        return TaskRepositoryImp.find_by_user(user_id)
+    def get_by_user(user_id: int):
+        return TaskRepositoryImp.get_by_user(user_id)
     
+    @staticmethod
+    def get_by_id(task_id: int):
+        return TaskRepositoryImp.get_by_id(task_id)
+    
+    @staticmethod
+    def update_task(task_id: int, form, user_id: int):
+        data = {
+            'titulo': form.titulo.data,
+            'descricao': form.descricao.data,
+            'status': form.status.data,
+            'user_id': user_id
+        }
+
+        return TaskRepositoryImp.update_task(task_id, data)
+    
+    @staticmethod
+    def update_status(task_id: int) -> bool:
+        data = {
+            'status': 'Finalizada'
+        }
+        return TaskRepositoryImp.update_status(task_id, data)
+
     @staticmethod 
     def delete_task(id):
         return TaskRepositoryImp.delete_task(id)

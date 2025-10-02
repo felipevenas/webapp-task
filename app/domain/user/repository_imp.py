@@ -18,6 +18,13 @@ class UserRepositoryImp(IUserRepository):
             return User.from_dict(user_data)
         return None
 
+    @staticmethod   
+    def find_by_id(user_id: int) -> User | None:
+        user_data = APIClient.get(f"/user/{user_id}")
+        if user_data:
+            return User.from_dict(user_data)
+        return None
+    
     @staticmethod
     def update(user_id: int, user_data: dict) -> User:
         updated_data = APIClient.put(f"/user/{user_id}", data=user_data)
@@ -29,26 +36,4 @@ class UserRepositoryImp(IUserRepository):
     def delete(user_id: int) -> bool:
         response = APIClient.delete(f"/user/{user_id}")
         return response is not None
-    
-    @staticmethod   
-    def find_by_id(user_id: int) -> User | None:
-        user_data = APIClient.get(f"/user/{user_id}")
-        if user_data:
-            return User.from_dict(user_data)
-        return None
-    
-    @staticmethod
-    def create(user_data: dict) -> User:
-        user_data = APIClient.post("/user", data=user_data)
-        if user_data:
-            return User.from_dict(user_data)
-        return None 
-    
-    @staticmethod
-    def login(credentials: dict) -> dict | None:
-        credentials = APIClient.login(f"/user/login", data=credentials)
-        if credentials:
-            return User.login_to_dict(credentials)
-        return None
- 
             
