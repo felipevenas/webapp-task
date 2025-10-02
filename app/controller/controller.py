@@ -30,16 +30,16 @@ def update_page(id):
         flash('É necessário se autenticar!')
         return redirect(url_for('index_bp.login_page'))
 
-    find_task = TaskService.find_by_id(id)
+    get_task = TaskService.get_by_id(id)
 
-    if not find_task:
+    if not get_task:
         flash('Nenhuma tarefa foi encontrada!')
         return redirect(url_for('index_bp.tasks_page'))
     
     form = CreateTaskForm()
 
-    form.titulo.data = find_task['titulo']
-    form.descricao.data = find_task['descricao'] 
+    form.titulo.data = get_task['titulo']
+    form.descricao.data = get_task['descricao'] 
 
     return render_template('task/update_task.html',
                            form=form,
@@ -52,7 +52,7 @@ def tasks_page():
         return redirect(url_for('index_bp.login_page'))
     
     user_id = session.get('user_id')
-    tasks = TaskService.find_by_user(user_id)
+    tasks = TaskService.get_by_user(user_id)
 
     return render_template('task/tasks.html',
                            tasks=tasks)

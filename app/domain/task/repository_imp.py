@@ -6,7 +6,7 @@ class TaskRepositoryImp(ITaskRepository):
     
     @staticmethod
     def create_task(data) -> Task:
-        response = APIClient.create_task(data)
+        response = APIClient.create('/task', data)
 
         if response and response.status_code == 201:
             task_data = response.json()
@@ -14,39 +14,34 @@ class TaskRepositoryImp(ITaskRepository):
         return None
     
     @staticmethod
-    def find_by_user(user_id: int) -> list[Task]:
-        api_response = APIClient.find_by_user(user_id)
+    def get_by_user(user_id: int) -> list[Task]:
+        api_response = APIClient.get_by_id(f'/tasks/user/{user_id}')
 
         if api_response:
-
             task_data_list = api_response.json()
-
             return [Task.from_dict(task_data) for task_data in task_data_list]
         return []
     
     @staticmethod
-    def find_by_id(user_id: int) -> Task:
-        api_response = APIClient.find_by_id(user_id)
+    def get_by_id(user_id: int) -> Task:
+        response = APIClient.get_by_id(f'/task/{user_id}')
 
-        if api_response:
-            task_data = api_response.json()
-            return task_data
+        if response:
+            return response.json()
         return None
     
     @staticmethod
     def update_task(task_id: int, data):
-        response = APIClient.update_task(task_id, data)
+        response = APIClient.update(f'/update/{task_id}', data)
         return response is not None and response.status_code == 200
             
     @staticmethod
-    def done_task(task_id: int, status: str):
-        response = APIClient.done_task(task_id, status)
+    def update_status(task_id: int, data: dict):
+        response = APIClient.update(f'/done/{task_id}', data)
         return response is not None and response.status_code == 200
 
     @staticmethod
     def delete_task(id: int) -> Task:
-        api_response = APIClient.delete_task(id)
-        
+        api_response = APIClient.delete(f'/task/{id}')
         if api_response:
             return print(f'Tarefa excluída com sucesso!')
-        

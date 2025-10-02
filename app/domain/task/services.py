@@ -15,12 +15,12 @@ class TaskService():
         return TaskRepositoryImp.create_task(data)
     
     @staticmethod
-    def find_by_user(user_id: int):
-        return TaskRepositoryImp.find_by_user(user_id)
+    def get_by_user(user_id: int):
+        return TaskRepositoryImp.get_by_user(user_id)
     
     @staticmethod
-    def find_by_id(task_id: int):
-        return TaskRepositoryImp.find_by_id(task_id)
+    def get_by_id(task_id: int):
+        return TaskRepositoryImp.get_by_id(task_id)
     
     @staticmethod
     def update_task(task_id: int, form, user_id: int):
@@ -35,7 +35,10 @@ class TaskService():
     
     @staticmethod
     def update_status(task_id: int) -> bool:
-        return TaskRepositoryImp.done_task(task_id, 'Finalizada')
+        data = {
+            'status': 'Finalizada'
+        }
+        return TaskRepositoryImp.update_status(task_id, data)
 
     @staticmethod 
     def delete_task(id):

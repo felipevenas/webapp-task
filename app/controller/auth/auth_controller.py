@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, redirect, url_for, render_template, request, session
+from flask import Blueprint, flash, redirect, url_for, request, session
 
 from app.forms.forms import CadastroForm, LoginForm 
 from app.domain.auth.services import AuthService
@@ -8,12 +8,13 @@ auth_bp = Blueprint('auth_bp', __name__)
 @auth_bp.route('/register', methods=['POST'])
 def register():
 
-    form = CadastroForm(request.form)
+    form = CadastroForm(request.form) 
+    service = AuthService()
 
     if form.validate_on_submit():
-        response = AuthService.register(form)
+        response = service.register(form)
         
-        if response and response.status_code == 200:
+        if response:
             flash('Usuário cadastrado com sucesso!', category='sucess')
             return redirect(url_for("index_bp.login_page"))
         else:
@@ -24,17 +25,16 @@ def register():
 def login(): 
 
     form = LoginForm(request.form)
+    service = AuthService()
 
-    api_response = AuthService.login(form)
+    authenticated_user = service.login(form) 
 
-    if api_response:
-
-        user_data = api_response.json()
+    if authenticated_user:
         
         flash(f"Bem-vindo de volta {form.usuario.data}!", 'success')
 
-        session['login'] = user_data.get('login')
-        session['user_id'] = user_data.get('id')
+        session['login'] = authenticated_user.login
+        session['user_id'] = authenticated_user.id
 
         return redirect(url_for("index_bp.tasks_page"))
 

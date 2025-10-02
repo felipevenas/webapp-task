@@ -28,15 +28,13 @@ def create_task():
     else:
         flash('Houve um problema no formulário. Tente novamente!', category='danger') # <-- Sempre está caindo aqui!
         return redirect(url_for('index_bp.tasks_page'))
-    
-
 
 @task_bp.route('/delete/<int:task_id>')
 def delete_task(task_id):
     if session ['login'] == None or 'login' not in session:
         return redirect(url_for('index_bp.login_page'))
     
-    find_task = TaskService.find_by_id(task_id)
+    find_task = TaskService.get_by_id(task_id)
     
     if find_task:
         TaskService.delete_task(task_id)
@@ -61,15 +59,17 @@ def update_task():
 
         task_id = request.form.get('inputId')
 
-        task = TaskService.find_by_id(request.form['inputId'])
-        TaskService.update_task(task_id, form, user_id)
+        print(task_id)
 
-        if task:
+        TaskService.get_by_id(task_id)
+        updated_task = TaskService.update_task(task_id, form, user_id)
+
+        if updated_task:
             flash('Tarefa editada com sucesso!')
             return redirect(url_for('index_bp.tasks_page'))
         else:
             flash('Não foi possível editar a tarefa!')
-            redirect(url_for('index_bp.update_page'))
+            return redirect(url_for('index_bp.update_page'))
             
 @task_bp.route('/done/<int:task_id>')
 def done_task(task_id):

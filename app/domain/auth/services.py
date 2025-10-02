@@ -1,13 +1,11 @@
-import requests
-
-from app.infra.api_client import APIClient
+from app.domain.auth.repository_imp import AuthRepositoryImp
 
 class AuthService:
 
-    # Os campos precisam estar exatamente iguais aos da API:
+    def __init__(self):
+        self.repository = AuthRepositoryImp()
 
-    @staticmethod
-    def register(form):
+    def register(self, form):
         data = {
             "nome": form.nome.data,
             "email": form.email.data,
@@ -19,25 +17,11 @@ class AuthService:
             "cargo": form.cargo.data,
             "ativo": form.ativo.data
         }
-
-        try:
-            api_response = APIClient.register(data)
-            return api_response
+        return self.repository.register(data)
         
-        except requests.exceptions.RequestException as e:
-            print(f"Erro de conexão com a API: {e}")
-            return None
-        
-    @staticmethod
-    def login(form):
+    def login(self, form):
         data = {
             "login": form.usuario.data,
             "senha": form.senha.data
         }
-        try:
-            api_response = APIClient.login(data)
-            return api_response
-        
-        except requests.exceptions.HTTPError as e:
-            print(f'Erro de conexão com a API: {e}')
-            return None
+        return self.repository.login(data) # <- Está acusando como se fosse dois argumentos que estou passando aquoi.

@@ -19,7 +19,7 @@ class User():
                 return cls(
                         id = data.get('id'),
                         nome = data.get('nome'),
-                        login = data.get('usuario'),
+                        login = data.get('login'),
                         senha = data.get('senha'),
                         telefone = data.get('telefone'),
                         email = data.get('email'),

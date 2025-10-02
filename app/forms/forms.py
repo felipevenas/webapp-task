@@ -22,7 +22,6 @@ class LoginForm(FlaskForm):
 class CreateTaskForm(FlaskForm):
     titulo = StringField(label='Título:', validators=[Length(max=100), DataRequired()])
     descricao = StringField(label='Descrição:', validators=[Length(max=100), DataRequired()])
-    submit = SubmitField(label='Adicionar tarefa')
     status = SelectField('Status:',
                     validators=[DataRequired(message="Por favor, escolha um gstatus.")],
                     choices=[
@@ -30,3 +29,4 @@ class CreateTaskForm(FlaskForm):
                         ('Finalizada', 'Finalizada')
                         ]
                     )
+    submit = SubmitField(label='Editar tarefa')

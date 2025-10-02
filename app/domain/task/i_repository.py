@@ -4,7 +4,7 @@ from app.domain.task.model import Task
 class ITaskRepository(ABC):
 
     @abstractmethod
-    def get_all() -> list[Task]:
+    def find_all() -> list[Task]:
         raise NotImplementedError
     
     @abstractmethod
