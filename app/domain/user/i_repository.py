@@ -4,15 +4,15 @@ from app.domain.user.model import User
 class IUserRepository(ABC):
 
     @abstractmethod
-    def find_all() -> list[User]:
+    def get_all() -> list[User]:
         raise NotImplementedError
     
     @abstractmethod
-    def find_by_login(user_login: str) -> User:
+    def get_by_login(user_login: str) -> User:
         raise NotImplementedError
     
     @abstractmethod
-    def find_by_id(user_id: int) -> User:
+    def get_by_id(user_id: int) -> User:
         raise NotImplementedError
     
     @abstractmethod

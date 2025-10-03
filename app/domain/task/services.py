@@ -2,8 +2,10 @@ from app.domain.task.repository_imp import TaskRepositoryImp
 
 class TaskService():
 
-    @staticmethod
-    def create_task(form, user_id):
+    def __init__(self, repository: TaskRepositoryImp):
+        self.repository = repository
+
+    def create_task(self, form, user_id):
 
         data = {
             'titulo': form.titulo.data,
@@ -12,18 +14,15 @@ class TaskService():
             'user_id': int(user_id)
         }
 
-        return TaskRepositoryImp.create_task(data)
+        return self.repository.create_task(data)
     
-    @staticmethod
-    def get_by_user(user_id: int):
-        return TaskRepositoryImp.get_by_user(user_id)
+    def get_by_user(self, user_id: int):
+        return self.repository.get_by_user(user_id)
     
-    @staticmethod
-    def get_by_id(task_id: int):
-        return TaskRepositoryImp.get_by_id(task_id)
+    def get_by_id(self, task_id: int):
+        return self.repository.get_by_id(task_id)
     
-    @staticmethod
-    def update_task(task_id: int, form, user_id: int):
+    def update_task(self, task_id: int, form, user_id: int):
         data = {
             'titulo': form.titulo.data,
             'descricao': form.descricao.data,
@@ -31,15 +30,13 @@ class TaskService():
             'user_id': user_id
         }
 
-        return TaskRepositoryImp.update_task(task_id, data)
+        return self.repository.update_task(task_id, data)
     
-    @staticmethod
-    def update_status(task_id: int) -> bool:
+    def update_status(self, task_id: int) -> bool:
         data = {
             'status': 'Finalizada'
         }
-        return TaskRepositoryImp.update_status(task_id, data)
+        return self.repository.update_status(task_id, data)
 
-    @staticmethod 
-    def delete_task(id):
-        return TaskRepositoryImp.delete_task(id)
+    def delete_task(self, id):
+        return self.repository.delete_task(id)
