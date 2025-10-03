@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, session, redirect, url_for, flash
-from app.forms.forms import LoginForm, CadastroForm, CreateTaskForm
 
+from app.domain.task.repository_imp import TaskRepositoryImp
+from app.forms.forms import LoginForm, CadastroForm, CreateTaskForm
 from app.domain.task.services import TaskService
 
 index_bp = Blueprint('index_bp', __name__)
@@ -30,7 +31,10 @@ def update_page(id):
         flash('É necessário se autenticar!')
         return redirect(url_for('index_bp.login_page'))
 
-    get_task = TaskService.get_by_id(id)
+    repository = TaskRepositoryImp()
+    service = TaskService(repository)
+
+    get_task = service.get_by_id(id)
 
     if not get_task:
         flash('Nenhuma tarefa foi encontrada!')
@@ -52,7 +56,11 @@ def tasks_page():
         return redirect(url_for('index_bp.login_page'))
     
     user_id = session.get('user_id')
-    tasks = TaskService.get_by_user(user_id)
+
+    repository = TaskRepositoryImp()
+    service = TaskService(repository)
+
+    tasks = service.get_by_user(user_id)
 
     return render_template('task/tasks.html',
                            tasks=tasks)

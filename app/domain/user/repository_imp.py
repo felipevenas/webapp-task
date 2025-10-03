@@ -5,21 +5,21 @@ from app.domain.user.i_repository import IUserRepository
 class UserRepositoryImp(IUserRepository):
 
     @staticmethod
-    def find_all() -> list[User]:
+    def get_all() -> list[User]:
         users_data = APIClient.get_users("/users")
         if users_data:
             return [User.from_dict(users_data) for user_data in users_data]
         return []
     
     @staticmethod
-    def find_by_login(user_login: str) -> User:
-        user_data = APIClient.find_by_login(f'user/{user_login}')
+    def get_by_login(user_login: str) -> User:
+        user_data = APIClient.get_by_login(f'user/{user_login}')
         if user_data:
             return User.from_dict(user_data)
         return None
 
     @staticmethod   
-    def find_by_id(user_id: int) -> User | None:
+    def get_by_id(user_id: int) -> User | None:
         user_data = APIClient.get(f"/user/{user_id}")
         if user_data:
             return User.from_dict(user_data)

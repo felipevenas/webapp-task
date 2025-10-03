@@ -4,14 +4,26 @@ from app.domain.task.model import Task
 class ITaskRepository(ABC):
 
     @abstractmethod
-    def find_all() -> list[Task]:
-        raise NotImplementedError
+    def get_all() -> list[Task]:
+        pass
     
     @abstractmethod
-    def find_by_id(task_id: int) -> Task:
-        raise NotImplementedError
+    def get_by_id(self, task_id: int) -> Task:
+        pass
     
     @abstractmethod
-    def create(data: dict) -> Task:
-        raise NotImplementedError
+    def create_task(self, data: dict) -> Task:
+        pass
+    
+    @abstractmethod
+    def update_task(self, task_id: int, data: dict):
+        pass
+
+    @abstractmethod
+    def update_status(self, task_id: int, data: dict):
+        pass
+
+    @abstractmethod
+    def delete_task(self, id: int):
+        pass
     

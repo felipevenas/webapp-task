@@ -4,12 +4,12 @@ from app.domain.user.repository_imp import UserRepositoryImp
 class UserService():
     
     @staticmethod
-    def find_all() -> User:
-        return UserRepositoryImp.find_all()
+    def get_all() -> User:
+        return UserRepositoryImp.get_all()
 
     @staticmethod
-    def find_by_id(user_id: int) -> User | None:
-        return UserRepositoryImp.find_by_id(user_id)
+    def get_by_id(user_id: int) -> User | None:
+        return UserRepositoryImp.get_by_id(user_id)
     
     @staticmethod
     def update(user_id: int, data: dict) -> User | None:
